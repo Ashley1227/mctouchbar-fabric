@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "mctouchbar",
+  "version": "${version}",
+
+  "name": "MCTouchbar",
+  "description": "Adds support for the Apple touchbar in Minecraft",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/mctouchbar/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "mctouchbar.Main"
+    ]
+  },
+  "mixins": [
+    "mctouchbar.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
