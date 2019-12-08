@@ -7,6 +7,7 @@ import com.thizzer.jtouchbar.item.view.TouchBarView;
 import com.thizzer.jtouchbar.item.view.action.TouchBarViewAction;
 import mctouchbar.widget.Widget;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -20,7 +21,7 @@ public class DebugButtonWidget extends Widget {
 
     public DebugButtonWidget() {
         this.setID("widget.mctouchbar.debug");
-        touchBarButton.setTitle(new TranslatableText("widget.mctouchbar.debug").asString());
+        touchBarButton.setTitle(I18n.translate("widget.mctouchbar.debug"));
         touchBarButton.setAction(new TouchBarViewAction() {
             @Override
             public void onCall(TouchBarView view) {

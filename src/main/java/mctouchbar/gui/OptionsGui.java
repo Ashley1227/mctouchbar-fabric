@@ -1,9 +1,13 @@
 package mctouchbar.gui;
 
+import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import mctouchbar.Main;
 import mctouchbar.widget.Widgets;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.SettingsScreen;
+import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.BaseText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -12,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionsGui extends LightweightGuiDescription {
+    public static OptionsGui instance;
+    public static OptionsScreen screen;
+
     public int scroll = 0;
 
     public WButton[] widgetSelectorButtons;
@@ -32,6 +39,7 @@ public class OptionsGui extends LightweightGuiDescription {
 
         WButton up = new WButton(new TranslatableText("gui.mctouchbar.options.scroll_up"));
         WButton down = new WButton(new TranslatableText("gui.mctouchbar.options.scroll_down"));
+
 
         root.add(up, 300, 16, 16, 16);
         up.setOnClick(() -> {
@@ -55,6 +63,13 @@ public class OptionsGui extends LightweightGuiDescription {
 
         updateButtons();
 
+        WButton done = new WButton(new TranslatableText("gui.done"));
+        done.setOnClick(() -> {
+            MinecraftClient.getInstance().openScreen(new SettingsScreen(new TitleScreen(), MinecraftClient.getInstance().options));
+            MinecraftClient.getInstance().openScreen(new SettingsScreen(new TitleScreen(), MinecraftClient.getInstance().options));
+        });
+        root.add(done, 0, 74 + 26 * 5, 140, 1);
+
     }
 
     public void updateButtons() {
@@ -76,11 +91,7 @@ public class OptionsGui extends LightweightGuiDescription {
         for (int i = 0; i < 5; i++) {
             widgetSelectorButtons[i] = new WButton(new TranslatableText(keys.get(scroll + i)));
             final int x = i;
-            if (!Widgets.isEnabled(keys.get(x + scroll))) {
-                widgetSelectorButtons[i].setEnabled(false);
-            }
             widgetSelectorButtons[i].setOnClick(() -> {
-//					Widgets.activeWidgets.add(Widgets.widgetStorage.get(keys.get(x+scroll)));
 
                 Main.config.enabledWidgets[selectedButton] = Widgets.widgetStorage.get(keys.get(x + scroll));
 
@@ -94,6 +105,7 @@ public class OptionsGui extends LightweightGuiDescription {
             }
         }
 
+
         slotButtons = new WButton[9];
 
         for (int i = 0; i < 9; i++) {
@@ -104,8 +116,6 @@ public class OptionsGui extends LightweightGuiDescription {
                     String s = new TranslatableText("gui.mctouchbar.options.slot." + x).asString();
                     if (Main.config.enabledWidgets[x] != null) {
                         s += ": " + new TranslatableText(Main.config.enabledWidgets[x].ID).asString();
-//						s += ": " + Widgets.activeWidgets[x].getID();
-//						Logger.info(Widgets.activeWidgets.toString());
                     } else {
                         s += ": " + new TranslatableText("gui.mctouchbar.options.empty").asString();
                     }

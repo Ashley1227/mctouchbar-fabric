@@ -8,6 +8,7 @@ import com.thizzer.jtouchbar.item.view.action.TouchBarViewAction;
 import io.github.cottonmc.cotton.gui.client.ClientCottonScreen;
 import mctouchbar.Main;
 import mctouchbar.gui.OptionsGui;
+import mctouchbar.gui.OptionsScreen;
 import mctouchbar.logging.Logger;
 import mctouchbar.widget.widgets.*;
 import net.minecraft.client.MinecraftClient;
@@ -50,13 +51,20 @@ public class Widgets {
             Logger.error("Error initializing MCTouchbar widgets :C");
             e.printStackTrace();
         }
+        try {
+            OptionsGui.instance = new OptionsGui();
+            OptionsGui.screen = new OptionsScreen(OptionsGui.instance);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Logger.error("Error initializing Options GUI");
+        }
 //        jTouchBar = new JTouchBar();
         try {
             window = MinecraftClient.getInstance().window.getHandle();
             update();
         } catch (Exception e) {
             e.printStackTrace();
-            Logger.error("Error initializing  JTouchbar");
+            Logger.error("Error initializing JTouchbar");
         }
     }
 
@@ -75,18 +83,6 @@ public class Widgets {
                 jTouchBar.addItem(w.touchBarItem);
             }
         }
-
-        TouchBarButton optionsBtn = new TouchBarButton();
-        optionsBtn.setTitle("Touchbar Options");
-
-        optionsBtn.setAction(new TouchBarViewAction() {
-            @Override
-            public void onCall(TouchBarView view) {
-                MinecraftClient.getInstance().openScreen(new ClientCottonScreen(new OptionsGui()));
-                Logger.info("Testing epic gamer");
-            }
-        });
-        jTouchBar.addItem(new TouchBarItem("optionsBtn", optionsBtn, true));
         jTouchBar.show(
                 GLFWNativeCocoa.glfwGetCocoaWindow(window)
         );
@@ -131,9 +127,10 @@ public class Widgets {
 
     public static boolean isEnabled(String s) {
         for (Widget s1 : Main.config.enabledWidgets) {
-            if (s.equals(s1.ID)) {
+            if (s1 == null)
+                continue;
+            if (s.equals(s1.ID))
                 return true;
-            }
         }
         return false;
     }

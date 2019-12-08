@@ -1,10 +1,11 @@
 {
   "required": false,
-  "package": "",
+  "package": "mctouchbar.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
+    "SettingsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
