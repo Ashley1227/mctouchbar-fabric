@@ -1,0 +1,25 @@
+{
+  "gui.mctouchbar.options.label": "Touch Bar Optionen",
+  "gui.mctouchbar.options.remove": "Lösche Slots",
+  "gui.mctouchbar.options.scroll_up": "∧",
+  "gui.mctouchbar.options.scroll_down": "∨",
+  "gui.mctouchbar.options.search": "Suche",
+  "gui.mctouchbar.options.empty": "Leer",
+
+  "gui.mctouchbar.options.slot.0": "Slot 1",
+  "gui.mctouchbar.options.slot.1": "Slot 2",
+  "gui.mctouchbar.options.slot.2": "Slot 3",
+  "gui.mctouchbar.options.slot.3": "Slot 4",
+  "gui.mctouchbar.options.slot.4": "Slot 5",
+  "gui.mctouchbar.options.slot.5": "Slot 6",
+  "gui.mctouchbar.options.slot.6": "Slot 7",
+  "gui.mctouchbar.options.slot.7": "Slot 8",
+  "gui.mctouchbar.options.slot.8": "Slot 9",
+
+  "widget.mctouchbar.fps": "FPS-Anzeige",
+  "widget.mctouchbar.facing": "Richtungsanzeige",
+  "widget.mctouchbar.debug": "Debug",
+  "widget.mctouchbar.fov_slider": "Sichtfeldregler",
+  "widget.mctouchbar.fov_display": "Sichtfeldanzeige",
+  "widget.mctouchbar.heading": "Heading Display"
+}
