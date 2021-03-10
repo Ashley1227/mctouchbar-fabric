@@ -4,8 +4,6 @@ import com.thizzer.jtouchbar.JTouchBar;
 import com.thizzer.jtouchbar.common.Color;
 import com.thizzer.jtouchbar.item.view.TouchBarButton;
 import io.github.Ashley1227.mctouchbar.widget.Widget;
-import io.github.Ashley1227.mctouchbar.widget.config.WidgetConfig;
-import io.github.Ashley1227.mctouchbar.widget.config.WidgetConfigOutline;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.TranslatableText;
@@ -15,33 +13,31 @@ import java.util.Random;
 
 public class TestWidget extends Widget {
 
-	private TouchBarButton[] buttons = new TouchBarButton[9];
+	private TouchBarButton button;
 	private Color[] colors = {Color.RED,Color.ORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,Color.PURPLE};
-	private int[] i = new int[9];
+	private int i;
 
 	public TestWidget() {
-		super(new WidgetConfigOutline()
-
-		);
+		super();
 
 	}
 
 	@Override
-	public void tick(WidgetConfig config, int index) {
-		super.tick(config,index);
-		if(this.buttons != null && this.buttons[index] != null) {
-			this.buttons[index].setBezelColor(this.colors[++i[index] % colors.length]);
+	public void tick() {
+		super.tick();
+		if(this.button != null) {
+			this.button.setBezelColor(this.colors[++i % colors.length]);
 		}
 	}
 
 	@Override
-	public void addToTouchbar(JTouchBar jTouchBar, int index, WidgetConfig config) {
-		super.addToTouchbar(jTouchBar, index, config);
+	public void addToTouchbar(JTouchBar jTouchBar) {
+		super.addToTouchbar(jTouchBar);
 		Screen screen = MinecraftClient.getInstance().currentScreen;
-		buttons[index] = addButtonToTouchbar(new TranslatableText("widget.mctouchbar.test"), e -> {
+		button = addButtonToTouchbar(new TranslatableText("widget.mctouchbar.test"), e -> {
 			Util.getOperatingSystem().open("https://youtu.be/dQw4w9WgXcQ");
 		});
 		Random random = new Random();
-		i[index] = random.nextInt(colors.length);
+		i = random.nextInt(colors.length);
 	}
 }

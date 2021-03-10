@@ -61,7 +61,7 @@ public class FramebufferUtils extends DrawableHelper {
 		GL11.glPixelStorei(GL11.GL_PACK_ALIGNMENT, 1);
 		GL11.glPixelStorei(GL11.GL_UNPACK_ALIGNMENT, 1);
 		pixelBuffer.clear();
-		GlStateManager.bindTexture(buffer.colorAttachment); // buffer.frameBufferTexture
+		GlStateManager.bindTexture(buffer.getColorAttachment()); // buffer.frameBufferTexture
 		GL11.glGetTexImage(GL11.GL_TEXTURE_2D, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, pixelBuffer);
 		pixelBuffer.get(pixelValues);
 
@@ -123,7 +123,7 @@ public class FramebufferUtils extends DrawableHelper {
 //            fb.delete();
 		}
 
-		MCTouchbar.LOGGER.info("saving pic" + MCTouchbar.i);
+		MCTouchbar.LOGGER.info("saving pic");
 	}
 
 	public static void renderItemThing(ItemStack stack, int outputSize) {
@@ -153,7 +153,7 @@ public class FramebufferUtils extends DrawableHelper {
 //        RenderSystem.popMatrix();
 		mb.beginWrite(true);
 
-		MCTouchbar.LOGGER.info("renderItem" + MCTouchbar.i);
+		MCTouchbar.LOGGER.info("renderItem");
 
 		File f = new File("pics/" + i++ + ".png");
 		f.getParentFile().mkdirs();

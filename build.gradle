@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.2.6-SNAPSHOT'
+	id 'fabric-loom' version '0.6-SNAPSHOT'
 	id 'maven-publish'
 	id "com.github.johnrengelman.shadow" version "5.2.0"
 }
@@ -20,20 +20,16 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Mod menu
-	modImplementation "io.github.prospector:modmenu:${project.modmenu_version}";
-
-	// include Cloth Config in production
-	modImplementation "me.shedaniel.cloth:config-2:${project.cloth_version}"
-	include "me.shedaniel.cloth:config-2:${project.cloth_version}"
-
-	compile "com.fasterxml.jackson.core:jackson-databind:${project.jackson_version}"
-	include "com.fasterxml.jackson.core:jackson-databind:${project.jackson_version}"
-	include "com.fasterxml.jackson.core:jackson-annotations:${project.jackson_version}"
-	include "com.fasterxml.jackson.core:jackson-core:${project.jackson_version}"
-
 	compile "com.thizzer.jtouchbar:jtouchbar:${project.jtouchbar_version}"
 	include "com.thizzer.jtouchbar:jtouchbar:${project.jtouchbar_version}"
+}
+
+repositories {
+	mavenLocal()
+	flatDir {
+		dirs 'libs'
+	}
+	maven { url "https://maven.terraformersmc.com/releases" }
 }
 
 processResources {
